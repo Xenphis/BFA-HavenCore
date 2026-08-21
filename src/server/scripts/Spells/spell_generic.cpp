@@ -2260,7 +2260,7 @@ class spell_gen_obsidian_armor : public SpellScriptLoader
                 });
             }
 
-            bool CheckProc(ProcEventInfo& eventInfo)
+            bool CheckProc(ProcEventInfo& /*eventInfo*/)
             {
                 if (!eventInfo.GetSpellInfo())
                     return false;
@@ -2329,7 +2329,7 @@ class spell_gen_oracle_wolvar_reputation : public SpellScriptLoader
                 return GetCaster()->GetTypeId() == TYPEID_PLAYER;
             }
 
-            void HandleDummy(SpellEffIndex effIndex)
+            void HandleDummy(SpellEffIndex /*effIndex*/)
             {
                 Player* player = GetCaster()->ToPlayer();
                 uint32 factionId = GetEffectInfo(effIndex)->CalcValue();
@@ -2454,7 +2454,7 @@ class spell_gen_proc_below_pct_damaged : public SpellScriptLoader
         {
             PrepareAuraScript(spell_gen_proc_below_pct_damaged_AuraScript);
 
-            bool CheckProc(ProcEventInfo& eventInfo)
+            bool CheckProc(ProcEventInfo& /*eventInfo*/)
             {
                 DamageInfo* damageInfo = eventInfo.GetDamageInfo();
                 if (!damageInfo || !damageInfo->GetDamage())
@@ -3429,7 +3429,7 @@ class spell_gen_turkey_marker : public SpellScriptLoader
         {
             PrepareAuraScript(spell_gen_turkey_marker_AuraScript);
 
-            void OnApply(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
+            void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
             {
                 // store stack apply times, so we can pop them while they expire
                 _applyTimes.push_back(GameTime::GetGameTimeMS());
@@ -3532,7 +3532,7 @@ class spell_gen_vampiric_touch : public SpellScriptLoader
                 return ValidateSpellInfo({ SPELL_VAMPIRIC_TOUCH_HEAL });
             }
 
-            void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+            void HandleProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
             {
                 PreventDefaultAction();
                 DamageInfo* damageInfo = eventInfo.GetDamageInfo();
@@ -4747,7 +4747,7 @@ public:
                 });
         }
 
-        bool CheckProc(ProcEventInfo& eventInfo)
+        bool CheckProc(ProcEventInfo& /*eventInfo*/)
         {
             if (!eventInfo.GetActionTarget())
                 return false;
@@ -5025,7 +5025,7 @@ public:
     {
         PrepareAuraScript(spell_endurance_of_niuzao_AuraScript);
 
-        void AfterAbsorb(AuraEffect* aurEff, DamageInfo& dmgInfo, float& absorbAmount)
+        void AfterAbsorb(AuraEffect* /*aurEff*/, DamageInfo& /*dmgInfo*/, float& absorbAmount)
         {
             if (Unit* owner = GetUnitOwner())
             {
@@ -5425,8 +5425,7 @@ public:
 
         void HandleDummy(SpellEffIndex /* effIndex */)
         {
-            float damage = GetEffectValue();
-            Unit* caster = GetCaster();
+            float /*damage*/ = GetEffectValue();
            // if (Unit* target = GetHitUnit())
               //  if (SpellInfo const* triggeredByAuraSpell = GetTriggeringSpell())
                   //  if (triggeredByAuraSpell->Id == SPELL_PERSISTANT_SHIELD_TRIGGERED)
@@ -5699,7 +5698,7 @@ class spell_searing_gaze_of_the_dook_despawn : public AuraScript
 {
     PrepareAuraScript(spell_searing_gaze_of_the_dook_despawn);
 
-    void Tick(AuraEffect const* aurEff)
+    void Tick(AuraEffect const* /*aurEff*/)
     {
         Unit* target = GetTarget()->ToCreature();
         if (!target)
@@ -5917,7 +5916,7 @@ class spell_q29347_crayfish : public AuraScript
 
     uint32 m_timer = 2000;
 
-    void OnUpdate(uint32 diff, AuraEffect* aurEff)
+    void OnUpdate(uint32 diff, AuraEffect* /*aurEff*/)
     {
         auto caster = GetCaster();
         if (!caster)
@@ -5977,7 +5976,7 @@ class spell_q13698_shredder_aura : public AuraScript
 
     uint32 m_timer = 2000;
 
-    void OnUpdate(uint32 diff, AuraEffect* aurEff)
+    void OnUpdate(uint32 diff, AuraEffect* /*aurEff*/)
     {
         auto caster = GetCaster();
         if (!caster)
@@ -6023,7 +6022,7 @@ class spell_q29347_bait : public AuraScript
 
     uint32 m_timer = 2000;
 
-    void OnUpdate(uint32 diff, AuraEffect* aurEff)
+    void OnUpdate(uint32 diff, AuraEffect* /*aurEff*/)
     {
         auto caster = GetCaster();
         if (!caster)
@@ -6309,7 +6308,7 @@ public:
             return true;
         }
 
-        void OnUpdate(uint32 diff, AuraEffect* aurEff)
+        void OnUpdate(uint32 diff, AuraEffect* /*aurEff*/)
         {
             if (GetCaster())
             {
@@ -6633,7 +6632,7 @@ public:
     {
         PrepareAuraScript(spell_gen_brutal_assaultAuraScript);
 
-        void OnApply(AuraEffect const* aurEff, AuraEffectHandleModes /*mode*/)
+        void OnApply(AuraEffect const* /*aurEff*/, AuraEffectHandleModes /*mode*/)
         {
            // int32 amount = aurEff->GetOldBaseAmount() + aurEff->GetAmount();
           //  if (AuraEffect* aurEffSelf = GetEffect(EFFECT_0))
@@ -6691,7 +6690,6 @@ public:
 
                 aurEff0->ChangeAmount(amount);
 
-                float bp0 = -amount;
               //  player->CastCustomSpell(player, 74410, &bp0, &bp0, &bp0, true);
             }
         }
@@ -7080,7 +7078,7 @@ public:
     {
         PrepareSpellScript(spell_gen_herbalism_trap_SpellScript);
 
-        void HandleDummy(SpellEffIndex effIndex)
+        void HandleDummy(SpellEffIndex /*effIndex*/)
         {
             Player* caster = GetCaster()->ToPlayer();
             if (!caster)
@@ -7121,7 +7119,7 @@ public:
     {
         PrepareSpellScript(spell_gen_mining_trap_SpellScript);
 
-        void HandleDummy(SpellEffIndex effIndex)
+        void HandleDummy(SpellEffIndex /*effIndex*/)
         {
             Player* caster = GetCaster()->ToPlayer();
             if (!caster)
@@ -7162,7 +7160,7 @@ public:
     {
         PrepareSpellScript(spell_gen_learn_legion_skinning_SpellScript);
 
-        void HandleDummy(SpellEffIndex effIndex)
+        void HandleDummy(SpellEffIndex /*effIndex*/)
         {
             Player* caster = GetCaster()->ToPlayer();
             if (!caster)
@@ -7205,7 +7203,7 @@ public:
             __HORDE = 192191,
             __ALLIANCE = 185506,
         };
-        void HandleDummy(SpellEffIndex effIndex)
+        void HandleDummy(SpellEffIndex /*effIndex*/)
         {
             Player* caster = GetCaster()->ToPlayer();
             if (!caster)
@@ -7756,7 +7754,7 @@ public:
         PrepareAuraScript(spell_class_mecagnomo_emergency_AuraScript);
 
 
-        void HandleProc(AuraEffect const* aurEff, ProcEventInfo& eventInfo)
+        void HandleProc(AuraEffect const* aurEff, ProcEventInfo& /*eventInfo*/)
         {
             PreventDefaultAction();
             Unit* caster = GetCaster();
@@ -7772,7 +7770,7 @@ public:
         }
 
       
-        bool CheckProc(ProcEventInfo& eventInfo)
+        bool CheckProc(ProcEventInfo& /*eventInfo*/)
         {
             Unit* caster = GetCaster();
             caster->ModifyAuraState(AURA_STATE_HEALTHLESS_20_PERCENT, false);
@@ -7881,7 +7879,7 @@ public:
     {
         PrepareAuraScript(spell_challengers_might_AuraScript);
 
-        void OnProc(AuraEffect const* aurEff, ProcEventInfo& p_EventInfo)
+        void OnProc(AuraEffect const* aurEff, ProcEventInfo& /*p_EventInfo*/)
         {
             PreventDefaultAction();
             ;
@@ -7937,7 +7935,7 @@ public:
     challange_player_instance_handler() : PlayerScript("challange_player_instance_handler")
     {  }
 
-    void OnStartChallengeMode(Player* player, uint8 level, uint8 affix1, uint8 affix2, uint8 affix3)
+    void OnStartChallengeMode(Player* /*player*/, uint8 /*level*/, uint8 affix1, uint8 affix2, uint8 affix3)
     {
         isstarted = true;
         _affix1 = affix1;
