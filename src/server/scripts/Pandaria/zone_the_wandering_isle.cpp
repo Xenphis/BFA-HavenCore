@@ -2668,10 +2668,9 @@ public:
 
     bool isSummoned;
 
-    void SummonHiFirepawHelper(Player* summoner, uint32 entry)
+    void SummonHiFirepawHelper(Player* summoner, uint32 /*entry*/)
     {
         //uint32 phase = summoner->GetPhaseMask();
-        uint32 team = summoner->GetTeam();
         Position pos;
 
        // summoner->GetPosition(&pos);
@@ -2696,12 +2695,12 @@ public:
 
     }
 
-    bool OnQuestAccept(Player* player, Creature* creature, Quest const* quest)
+    bool OnQuestAccept(Player* player, Creature* /*creature*/, Quest const* quest)
     {
         std::list<Creature*> summonList;
         GetCreatureListWithEntryInGrid(summonList, player, 59960, 6.0f);
 
-        for (auto summoned : summonList)
+        for ([[maybe_unused]] auto summoned : summonList)
             isSummoned = true;
 
         if (isSummoned == false)

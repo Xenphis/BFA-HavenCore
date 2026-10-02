@@ -181,8 +181,9 @@ struct scenario_artifact_ursocslair : public InstanceScript
             return DATA_STEP_8;
             break;
         default:
-            break;
+            return 0;
         }
+        return 0;
     }
 
     void LoadNPC(uint32 event, const SpawnData* data)
@@ -689,7 +690,7 @@ class go_claws_of_ursoc_248853 : public GameObjectScript
 public:
     go_claws_of_ursoc_248853() : GameObjectScript("go_claws_of_ursoc_248853") { }
 
-    bool OnGossipHello(Player* player, GameObject* go) override
+    bool OnGossipHello(Player* /*player*/, GameObject* /*go*/) override
     {
 
         return false;
@@ -716,13 +717,13 @@ public:
                     {
                         ///TO DO
                         //lea->AI()->DoAction(1);
-                        lea->GetScheduler().Schedule(10s, 11s, [lea, player](TaskContext context)
+                        lea->GetScheduler().Schedule(10s, 11s, [lea, player](TaskContext /*context*/)
                         {
                             lea->RemoveAurasDueToSpell(208707);
                             lea->Say(108061, player);
                         });
 
-                        lea->GetScheduler().Schedule(14s, 15s, [lea, player](TaskContext context)
+                        lea->GetScheduler().Schedule(14s, 15s, [lea, player](TaskContext /*context*/)
                         {
                             lea->Say("balarabala", LANG_UNIVERSAL, player);
                             ///player->TeleportTo();

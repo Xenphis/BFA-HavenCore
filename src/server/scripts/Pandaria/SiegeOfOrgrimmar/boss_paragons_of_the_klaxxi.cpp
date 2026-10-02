@@ -2814,10 +2814,7 @@ class npc_paragons_of_the_klaxxi_hungry_kunchong : public CreatureScript
                 if (me->HasUnitState(UNIT_STATE_CASTING))
                     return;
 
-                if (uint32 eventId = events.ExecuteEvent())
-                {
-
-                }
+                events.ExecuteEvent();
 
                 DoMeleeAttackIfReady();
             }
@@ -3138,7 +3135,7 @@ class npc_paragons_of_the_klaxxi_blood : public CreatureScript
                 if (UpdateBloodInfusion(diff))
                     return;
 
-                switch (uint32 eventId = events.ExecuteEvent())
+                switch (events.ExecuteEvent())
                 {
                     case EVENT_CHANGE_TARGET:
                         UpdateFollowing();
@@ -3972,7 +3969,7 @@ class spell_paragons_of_the_klaxxi_fiery_edge : public SpellScriptLoader
                 }
             }
 
-            void HandleHitTarget(SpellEffIndex effIndex)
+            void HandleHitTarget(SpellEffIndex /*effIndex*/)
             {
                 if (!GetCaster() || !GetHitUnit())
                     return;
